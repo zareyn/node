@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input">
+    <button id="button">Отправить</button>
+
+    <script>
+        const button = document.getElementById("button");
+        const input = document.getElementById("input");
+
+        button.onclick = async () => {
+            const value = input.value;
+
+            const result = await fetch(`http://localhost:8080/v1/user/${value}?name=10`);
+            const r = await result.json();
+            console.log(r);
+        }
+    </script>
+</body>
+</html>
