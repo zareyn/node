@@ -2,7 +2,17 @@ import express, { Request, Response } from "express"
 import path from "path";
 import mysql from "mysql";
 
-mysql.createConnection()
+export async function connect() {
+  const connection = await mysql.createConnection({
+    host: 'localhost:5444',
+    user: 'test',
+    password: 'test',
+    database: 'test'
+  });
+  
+  console.log("проверка подключения");
+  return connection;
+}
 
 const store: { value: any[] } = {
     value: []
