@@ -2,34 +2,29 @@ import express, { Request, Response } from "express"
 import path from "path";
 import mysql from "mysql";
 
-export async function connect() {
-  const connection = await mysql.createConnection({
-    host: 'localhost:5444',
-    user: 'test',
-    password: 'test',
-    database: 'test'
-  });
-  
-  console.log("проверка подключения");
-  return connection;
-}
 
-const store: { value: any[] } = {
-    value: []
-};
+const connection = mysql.createConnection({
+  port: 5444,
+  host: "localhost",
+  user: "test",
+  database: "public",
+  password: "test",
+}); 
 
-const server = express();
+ connection.connect(err =>{
+    if (err) {
+      return console.error("Server Clfame error: " + err.message);
+    }
+    else{
+      console.log("Подключение успешно установлено");
+    }
+ });
+//connection.query("SELECT * FROM users",
+   // function(err:Error) {
+   //   console.log(err.message); 
+ // });
+ // const sql = "INSERT INTO users(user, password) VALUES(demo, demo)";
 
-server.get('/store', (request: Request, response: Response) => {
-    response.json(JSON.stringify(store));
-    response.end();
-})
-
-server.get('/addToStore/:data', (request: Request, response: Response) => {
-    const params = request.params as { data: string };
-    store.value.push(params.data)
-    response.end();
-})
 
 server.get('/', (request: Request, response: Response) => {
     response.sendFile(path.resolve('./index.html'));
