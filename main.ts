@@ -2,7 +2,6 @@ import express, { Request, Response } from "express"
 import path from "path";
 import mysql from "mysql";
 
-mysql.createConnection()
 
 const store: { value: any[] } = {
     value: []
