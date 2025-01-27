@@ -15,10 +15,10 @@ const connection = new pg.Client({
 
 //const connection = mysql.createConnection({
 //  port: 5444,
-//  host: "localhost",
 //  user: "test",
-//  database: "test",
 //  password: "test",
+//  host: "localhost",
+//  database: "test",
 //}); 
 
   connection.connect(err =>{
